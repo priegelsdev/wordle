@@ -69,15 +69,24 @@ const KEYS = [
 
 type KeyboardProps = {
   onClick: (e: React.MouseEvent<HTMLButtonElement>) => void;
+  onEnter: () => void;
 };
 
-export default function Keyboard({ onClick }: KeyboardProps) {
+export default function Keyboard({ onClick, onEnter }: KeyboardProps) {
+  // function to run onClick passed down to keyElements
+  function handleClick(e: React.MouseEvent<HTMLButtonElement>) {
+    console.log('test');
+    const id = e.currentTarget.id;
+    console.log(id);
+    id === 'enter' || id === '27' ? onEnter() : onClick(e);
+  }
+
   const keyElements = KEYS.map((key, index) => (
     <button
       id={`${index}`}
       key={index}
       className="aspect-square w-14 border-solid border-2 uppercase font-bold"
-      onClick={onClick}
+      onClick={handleClick}
     >
       {key}
     </button>
