@@ -1,4 +1,5 @@
 import Keyboard from './Components/Keyboard';
+import words from './words.json';
 
 export default function App() {
   // TO DO
