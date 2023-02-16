@@ -1,3 +1,5 @@
+import Keyboard from './Components/Keyboard';
+
 export default function App() {
   return (
     <main className="w-screen h-screen flex flex-col justify-between">
@@ -32,6 +34,10 @@ export default function App() {
         <div>Word3</div>
         <div>Word4</div>
         <div>Word5</div>
+      </div>
+
+      <div className="m-auto">
+        <Keyboard />
       </div>
 
       <footer className="p-5 text-center bg-gray-600 text-white">info</footer>
