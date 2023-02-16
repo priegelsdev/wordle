@@ -19,9 +19,12 @@ export default function App() {
   // state to hold ENTERED, but not yet GUESSED letters
   const [enteredLetters, setEnteredLetters] = useState<string[]>([]);
   console.log('entered Letters state', enteredLetters);
-  // state to hold guessedLetters
+  // state to hold guessedLetters of lastly active row
   const [guessedLetters, setGuessedLetters] = useState<string[]>([]);
   console.log('guessed Letters state', guessedLetters);
+  // copy of guessedLetters that does not reset and holds every letter that has been guessed
+  const [allGuessedLetters, setAllGuessedLetters] = useState<string[]>([]);
+  console.log('all guessed letters', allGuessedLetters);
 
   // TODO: use effect to check guessed letters and quiz array and figure out logic to display
   // correct letters on screen
@@ -53,10 +56,15 @@ export default function App() {
     }
   }
 
+  // function to lock and compare entered letters to quizWord letters and add to guessed array
   function addGuessedLetters() {
     console.log('entered Letters', enteredLetters);
     if (enteredLetters.length === 5) {
       setGuessedLetters(enteredLetters);
+      enteredLetters.forEach((letter) =>
+        setAllGuessedLetters((prevState) => [...prevState, letter])
+      );
+
       setEnteredLetters([]);
     }
   }
@@ -76,7 +84,13 @@ export default function App() {
       </div>
 
       <div className="m-auto">
-        <Keyboard onClick={addEnteredLetter} onEnter={addGuessedLetters} />
+        <Keyboard
+          onClick={addEnteredLetter}
+          onEnter={addGuessedLetters}
+          guessedLetters={guessedLetters}
+          allGuessedLetters={allGuessedLetters}
+          quizWord={quizWord}
+        />
       </div>
 
       <footer className="p-5 text-center bg-gray-600 text-white">footer</footer>

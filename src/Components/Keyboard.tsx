@@ -70,9 +70,18 @@ const KEYS = [
 type KeyboardProps = {
   onClick: (e: React.MouseEvent<HTMLButtonElement>) => void;
   onEnter: () => void;
+  guessedLetters: string[];
+  allGuessedLetters: string[];
+  quizWord: string;
 };
 
-export default function Keyboard({ onClick, onEnter }: KeyboardProps) {
+export default function Keyboard({
+  onClick,
+  onEnter,
+  guessedLetters,
+  allGuessedLetters,
+  quizWord,
+}: KeyboardProps) {
   // function to run onClick passed down to keyElements
   function handleClick(e: React.MouseEvent<HTMLButtonElement>) {
     console.log('test');
@@ -85,7 +94,17 @@ export default function Keyboard({ onClick, onEnter }: KeyboardProps) {
     <button
       id={`${index}`}
       key={index}
-      className="aspect-square w-14 border-solid border-2 uppercase font-bold"
+      className={`aspect-square w-14 border-solid border-2 uppercase font-bold 
+        ${
+          guessedLetters.includes(key) && quizWord.split('').includes(key)
+            ? 'bg-green-200'
+            : ''
+        }
+        ${
+          allGuessedLetters.includes(key) && !quizWord.split('').includes(key)
+            ? 'bg-asphalt-gray text-white'
+            : ''
+        }`}
       onClick={handleClick}
     >
       {key}
