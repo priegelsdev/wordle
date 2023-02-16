@@ -63,16 +63,21 @@ const KEYS = [
   enter,
 ];
 
-const keyElements = KEYS.map((key, index) => (
-  <button
-    key={index}
-    className="aspect-square w-14 border-solid border-2 uppercase font-bold"
-  >
-    {key}
-  </button>
-));
+type KeyboardProps = {
+  onClick: () => void;
+};
 
-export default function Keyboard() {
+export default function Keyboard({ onClick }: KeyboardProps) {
+  const keyElements = KEYS.map((key, index) => (
+    <button
+      key={index}
+      className="aspect-square w-14 border-solid border-2 uppercase font-bold"
+      onClick={onClick}
+    >
+      {key}
+    </button>
+  ));
+
   return (
     <div className="w-screen grid grid-rows-3 grid-cols-Keyboard gap-2 justify-center justify-items-center">
       {keyElements}

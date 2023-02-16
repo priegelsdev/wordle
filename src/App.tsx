@@ -8,13 +8,20 @@ export default function App() {
   // TO DO
   // add activeRow state to determine which row letters get entered into
   // add guessedLetters array state to hold guessed letters
-  // add word state to hold word to be guessed
 
-  // add Word rows component
-
+  // state to hold random word from words.json
   const [quizWord, setQuizWord] = useState<string>(
     words[Math.floor(Math.random() * words.length)]
   );
+  // state to determine active row in which to guess for letters
+  const [activeRow, setActiveRow] = useState<number>(0);
+  // state to hold guessedLetters
+  const [guessedLetters, setGuessedLetters] = useState<string[]>([]);
+
+  // function to add letter to active row
+  function addGuessedLetter() {
+    console.log('test');
+  }
 
   return (
     <main className="w-screen h-screen flex flex-col justify-between">
@@ -31,7 +38,7 @@ export default function App() {
       </div>
 
       <div className="m-auto">
-        <Keyboard />
+        <Keyboard onClick={addGuessedLetter} />
       </div>
 
       <footer className="p-5 text-center bg-gray-600 text-white">footer</footer>
