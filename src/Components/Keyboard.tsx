@@ -35,7 +35,7 @@ const keyElements = KEYS.map((key) => (
 
 export default function Keyboard() {
   return (
-    <div className="w-screen grid grid-rows-3 grid-cols-Keyboard gap-5 justify-center justify-items-center">
+    <div className="w-screen grid grid-rows-3 grid-cols-Keyboard gap-2 justify-center justify-items-center">
       {keyElements}
     </div>
   );
