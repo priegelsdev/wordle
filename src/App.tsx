@@ -29,6 +29,7 @@ export default function App() {
   // TODO: use effect to check guessed letters and quiz array and figure out logic to display
   // correct letters on screen
 
+  // check if guessedLetters include quizWord letters on enter click
   useEffect(() => {
     quizWord.split('').map((letter) => {
       if (guessedLetters.includes(letter)) {
@@ -36,6 +37,20 @@ export default function App() {
       }
     });
   }, [guessedLetters]);
+
+  // display input letters on screen
+  useEffect(() => {
+    const row = document.getElementById(`row-${activeRow}`);
+    if (row) {
+      Array.from(row.childNodes as NodeListOf<HTMLElement>).forEach(
+        (child: HTMLElement, index: number) => {
+          if (enteredLetters[index]) {
+            child.innerText = enteredLetters[index];
+          }
+        }
+      );
+    }
+  });
 
   // function to add letter to active row
   function addEnteredLetter(e: React.MouseEvent<HTMLButtonElement>) {
@@ -80,7 +95,11 @@ export default function App() {
       </header>
 
       <div className="m-auto mb-0 lg text-center">
-        <RowsContainer quizWord={quizWord} />
+        <RowsContainer
+          quizWord={quizWord}
+          enteredLetters={enteredLetters}
+          activeRow={activeRow}
+        />
       </div>
 
       <div className="m-auto">
