@@ -1,4 +1,7 @@
+import React, { useState } from 'react';
+
 import Keyboard from './Components/Keyboard';
+import RowsContainer from './Components/RowsContainer';
 import words from './words.json';
 
 export default function App() {
@@ -8,6 +11,10 @@ export default function App() {
   // add word state to hold word to be guessed
 
   // add Word rows component
+
+  const [quizWord, setQuizWord] = useState<string>(
+    words[Math.floor(Math.random() * words.length)]
+  );
 
   return (
     <main className="w-screen h-screen flex flex-col justify-between">
@@ -20,6 +27,10 @@ export default function App() {
       </header>
 
       <div className="m-auto lg text-center">
+        <RowsContainer quizWord={quizWord} />
+      </div>
+
+      {/* <div className="m-auto lg text-center">
         <div className="flex gap-1">
           <div className="px-4 py-3 border-solid border-2 flex justify-center items-center">
             W
@@ -42,7 +53,7 @@ export default function App() {
         <div>Word3</div>
         <div>Word4</div>
         <div>Word5</div>
-      </div>
+      </div> */}
 
       <div className="m-auto">
         <Keyboard />

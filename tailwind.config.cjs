@@ -7,6 +7,9 @@ module.exports = {
         // Keyboard grid
         Keyboard: 'repeat(10, minmax(0, 56px))',
       },
+      colors: {
+        'asphalt-gray': '#74787B',
+      },
     },
   },
   plugins: [],
