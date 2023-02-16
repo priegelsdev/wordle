@@ -1,11 +1,14 @@
+import React from 'react';
+
 const arrow = (
   <svg
+    id="arrow"
     xmlns="http://www.w3.org/2000/svg"
     fill="none"
     viewBox="0 0 24 24"
     strokeWidth="1.5"
     stroke="currentColor"
-    className="arrow m-auto w-6 h-6"
+    className="m-auto w-6 h-6"
   >
     <path
       strokeLinecap="round"
@@ -17,12 +20,13 @@ const arrow = (
 
 const enter = (
   <svg
+    id="enter"
     xmlns="http://www.w3.org/2000/svg"
     fill="none"
     viewBox="0 0 24 24"
     strokeWidth={1.5}
     stroke="currentColor"
-    className="enter w-6 h-6 m-auto"
+    className="w-6 h-6 m-auto"
   >
     <path
       strokeLinecap="round"
@@ -64,12 +68,13 @@ const KEYS = [
 ];
 
 type KeyboardProps = {
-  onClick: () => void;
+  onClick: (e: React.MouseEvent<HTMLButtonElement>) => void;
 };
 
 export default function Keyboard({ onClick }: KeyboardProps) {
   const keyElements = KEYS.map((key, index) => (
     <button
+      id={`${index}`}
       key={index}
       className="aspect-square w-14 border-solid border-2 uppercase font-bold"
       onClick={onClick}

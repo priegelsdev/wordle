@@ -19,8 +19,19 @@ export default function App() {
   const [guessedLetters, setGuessedLetters] = useState<string[]>([]);
 
   // function to add letter to active row
-  function addGuessedLetter() {
-    console.log('test');
+  function addGuessedLetter(e: React.MouseEvent<HTMLButtonElement>) {
+    const target = e.target as HTMLElement;
+
+    if (target.innerText) {
+      console.log(target.innerText);
+    } else if (
+      target.id === 'enter' ||
+      target.id === 'arrow' ||
+      target.id === '26' ||
+      target.id === '27'
+    ) {
+      console.log(target.id);
+    }
   }
 
   return (
