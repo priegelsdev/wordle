@@ -1,6 +1,13 @@
 import Keyboard from './Components/Keyboard';
 
 export default function App() {
+  // TO DO
+  // add activeRow state to determine which row letters get entered into
+  // add guessedLetters array state to hold guessed letters
+  // add word state to hold word to be guessed
+
+  // add Word rows component
+
   return (
     <main className="w-screen h-screen flex flex-col justify-between">
       <header className="flex justify-between p-6 border-solid border-b-2 shadow-lg">
