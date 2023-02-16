@@ -17,14 +17,11 @@ export default function RowsContainer({ quizWord }: RowsContainerProps) {
     ></div>
   ));
 
-  return (
-    <>
-      <div className="flex gap-1 mb-1">{letterElements}</div>
-      <div className="flex gap-1 mb-1">{letterElements}</div>
-      <div className="flex gap-1 mb-1">{letterElements}</div>
-      <div className="flex gap-1 mb-1">{letterElements}</div>
-      <div className="flex gap-1 mb-1">{letterElements}</div>
-      <div className="flex gap-1 mb-1">{letterElements}</div>
-    </>
-  );
+  const rowElements = new Array(6).fill(0).map((row, index) => (
+    <div key={index} id={row} className="flex gap-1 mb-1">
+      {letterElements}
+    </div>
+  ));
+
+  return <>{rowElements}</>;
 }
