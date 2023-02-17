@@ -40,16 +40,20 @@ export default function App() {
 
   // check if guessedLetters include quizWord letters on enter click
   useEffect(() => {
-    /*     quizWord.split('').map((letter) => {
-      if (guessedLetters.includes(letter)) {
-        console.log(letter + ' included!');
-      }
-    }); */
-
     const row = document.getElementById(`row-${activeRow - 1}`);
     if (row) {
       Array.from(row.childNodes as NodeListOf<HTMLElement>).forEach(
         (child: HTMLElement, index: number) => {
+          // check how many times the entered letter is in the quiz word
+          const amountLetterInQuizWord = quizWord
+            .split('')
+            .reduce((acc, val) => {
+              if (val === guessedLetters[index]) {
+                acc++;
+              }
+              return acc;
+            }, 0);
+
           if (guessedLetters[index] === child.id) {
             // change bg color of box if guessed letter is correct or in wrong position
             child.style.backgroundColor = '#6BAA64';
@@ -57,7 +61,35 @@ export default function App() {
             guessedLetters[index] != child.id &&
             quizWord.split('').includes(guessedLetters[index])
           ) {
-            child.style.backgroundColor = '#C9B457';
+            // LOGIC:
+            // if the letter is included in quizWord, determine how many times (var count) and then loop through the row again;
+            // as long as count is > 0, loop through the row again and for each time the letter is found, count--
+            // to prioritize correct letters, we loop to ONLY check those first and THEN move on to incorrect placed ones
+
+            let count = amountLetterInQuizWord;
+
+            if (count > 0) {
+              Array.from(row.childNodes as NodeListOf<HTMLElement>).forEach(
+                (child: HTMLElement, index: number) => {
+                  if (guessedLetters[index] === child.id) {
+                    count--;
+                  }
+                }
+              );
+            }
+
+            Array.from(row.childNodes as NodeListOf<HTMLElement>).forEach(
+              (child: HTMLElement, index: number) => {
+                if (
+                  guessedLetters[index] != child.id &&
+                  quizWord.split('').includes(guessedLetters[index]) &&
+                  count > 0
+                ) {
+                  child.style.backgroundColor = '#C9B457';
+                  count--;
+                }
+              }
+            );
           }
         }
       );
