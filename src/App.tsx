@@ -14,13 +14,10 @@ export default function App() {
   const [activeRow, setActiveRow] = useState<number>(0);
   // state to hold ENTERED, but not yet GUESSED letters
   const [enteredLetters, setEnteredLetters] = useState<string[]>([]);
-  console.log('entered Letters state', enteredLetters);
   // state to hold guessedLetters of lastly active row
   const [guessedLetters, setGuessedLetters] = useState<string[]>([]);
-  console.log('guessed Letters state', guessedLetters);
   // copy of guessedLetters that does not reset and holds every letter that has been guessed
   const [allGuessedLetters, setAllGuessedLetters] = useState<string[]>([]);
-  console.log('all guessed letters', allGuessedLetters);
 
   // display input letters on screen
   useEffect(() => {
@@ -54,6 +51,8 @@ export default function App() {
               return acc;
             }, 0);
 
+          const letterToCheck = guessedLetters[index];
+
           if (guessedLetters[index] === child.id) {
             // change bg color of box if guessed letter is correct or in wrong position
             child.style.backgroundColor = '#6BAA64';
@@ -70,26 +69,30 @@ export default function App() {
 
             if (count > 0) {
               Array.from(row.childNodes as NodeListOf<HTMLElement>).forEach(
-                (child: HTMLElement, index: number) => {
-                  if (guessedLetters[index] === child.id) {
+                (child: HTMLElement, newIndex: number) => {
+                  if (
+                    letterToCheck === guessedLetters[newIndex] &&
+                    letterToCheck === child.id
+                  ) {
+                    count--;
+                  }
+                }
+              );
+
+              Array.from(row.childNodes as NodeListOf<HTMLElement>).forEach(
+                (child: HTMLElement, newIndex: number) => {
+                  if (
+                    letterToCheck != child.id &&
+                    letterToCheck === guessedLetters[newIndex] &&
+                    quizWord.split('').includes(letterToCheck) &&
+                    count > 0
+                  ) {
+                    child.style.backgroundColor = '#C9B457';
                     count--;
                   }
                 }
               );
             }
-
-            Array.from(row.childNodes as NodeListOf<HTMLElement>).forEach(
-              (child: HTMLElement, index: number) => {
-                if (
-                  guessedLetters[index] != child.id &&
-                  quizWord.split('').includes(guessedLetters[index]) &&
-                  count > 0
-                ) {
-                  child.style.backgroundColor = '#C9B457';
-                  count--;
-                }
-              }
-            );
           }
         }
       );
