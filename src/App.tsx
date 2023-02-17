@@ -5,7 +5,7 @@ import RowsContainer from './Components/RowsContainer';
 import words from './words.json';
 
 export default function App() {
-  // TO DO
+  // TODO:
   // add activeRow state to determine which row letters get entered into
   // add guessedLetters array state to hold guessed letters
 
@@ -41,34 +41,37 @@ export default function App() {
   // display input letters on screen
   useEffect(() => {
     const row = document.getElementById(`row-${activeRow}`);
+    console.log('now');
     if (row) {
       Array.from(row.childNodes as NodeListOf<HTMLElement>).forEach(
         (child: HTMLElement, index: number) => {
           if (enteredLetters[index]) {
             child.innerText = enteredLetters[index];
+          } else {
+            child.innerText = '';
           }
         }
       );
     }
-  });
+  }, [enteredLetters]);
 
   // function to add letter to active row
   function addEnteredLetter(e: React.MouseEvent<HTMLButtonElement>) {
     const target = e.target as HTMLElement;
 
-    if (target.innerText) {
+    if (target.innerText && enteredLetters.length < 5) {
       setEnteredLetters((prevState) => [
         ...prevState,
         target.innerText.toLowerCase(),
       ]);
-    } else if (
-      target.id === 'enter' ||
-      target.id === 'arrow' ||
-      target.id === '26' ||
-      target.id === '27'
-    ) {
-      console.log(target.id);
     }
+  }
+
+  // function to remove entered letter from last index of active row
+  function removeEnteredLetter(e: React.MouseEvent<HTMLButtonElement>) {
+    const target = e.target as HTMLElement;
+
+    setEnteredLetters((prevState) => prevState.slice(0, -1));
   }
 
   // function to lock and compare entered letters to quizWord letters and add to guessed array
@@ -107,6 +110,7 @@ export default function App() {
         <Keyboard
           onClick={addEnteredLetter}
           onEnter={addGuessedLetters}
+          onRemove={removeEnteredLetter}
           guessedLetters={guessedLetters}
           allGuessedLetters={allGuessedLetters}
           quizWord={quizWord}

@@ -70,6 +70,7 @@ const KEYS = [
 type KeyboardProps = {
   onClick: (e: React.MouseEvent<HTMLButtonElement>) => void;
   onEnter: () => void;
+  onRemove: (e: React.MouseEvent<HTMLButtonElement>) => void;
   guessedLetters: string[];
   allGuessedLetters: string[];
   quizWord: string;
@@ -78,16 +79,23 @@ type KeyboardProps = {
 export default function Keyboard({
   onClick,
   onEnter,
+  onRemove,
   guessedLetters,
   allGuessedLetters,
   quizWord,
 }: KeyboardProps) {
   // function to run onClick passed down to keyElements
   function handleClick(e: React.MouseEvent<HTMLButtonElement>) {
-    console.log('test');
     const id = e.currentTarget.id;
-    console.log(id);
-    id === 'enter' || id === '27' ? onEnter() : onClick(e);
+
+    if (id === 'enter' || id === '27') {
+      onEnter();
+    } else if (id === 'arrow' || id === '26') {
+      onRemove(e);
+    } else {
+      onClick(e);
+    }
+    /*     id === 'enter' || id === '27' ? onEnter() : onClick(e); */
   }
 
   const keyElements = KEYS.map((key, index) => (
