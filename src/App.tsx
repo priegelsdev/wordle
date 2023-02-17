@@ -22,19 +22,9 @@ export default function App() {
   const [allGuessedLetters, setAllGuessedLetters] = useState<string[]>([]);
   console.log('all guessed letters', allGuessedLetters);
 
-  // check if guessedLetters include quizWord letters on enter click
-  useEffect(() => {
-    quizWord.split('').map((letter) => {
-      if (guessedLetters.includes(letter)) {
-        console.log(letter + ' included!');
-      }
-    });
-  }, [guessedLetters]);
-
   // display input letters on screen
   useEffect(() => {
     const row = document.getElementById(`row-${activeRow}`);
-    console.log('now');
     if (row) {
       Array.from(row.childNodes as NodeListOf<HTMLElement>).forEach(
         (child: HTMLElement, index: number) => {
@@ -47,6 +37,32 @@ export default function App() {
       );
     }
   }, [enteredLetters]);
+
+  // check if guessedLetters include quizWord letters on enter click
+  useEffect(() => {
+    /*     quizWord.split('').map((letter) => {
+      if (guessedLetters.includes(letter)) {
+        console.log(letter + ' included!');
+      }
+    }); */
+
+    const row = document.getElementById(`row-${activeRow - 1}`);
+    if (row) {
+      Array.from(row.childNodes as NodeListOf<HTMLElement>).forEach(
+        (child: HTMLElement, index: number) => {
+          if (guessedLetters[index] === child.id) {
+            // change bg color of box if guessed letter is correct or in wrong position
+            child.style.backgroundColor = '#6BAA64';
+          } else if (
+            guessedLetters[index] != child.id &&
+            quizWord.split('').includes(guessedLetters[index])
+          ) {
+            child.style.backgroundColor = '#C9B457';
+          }
+        }
+      );
+    }
+  }, [guessedLetters]);
 
   // function to add letter to active row
   function addEnteredLetter(e: React.MouseEvent<HTMLButtonElement>) {
