@@ -5,10 +5,6 @@ import RowsContainer from './Components/RowsContainer';
 import words from './words.json';
 
 export default function App() {
-  // TODO:
-  // add activeRow state to determine which row letters get entered into
-  // add guessedLetters array state to hold guessed letters
-
   // state to hold random word from words.json
   const [quizWord, setQuizWord] = useState<string>(
     words[Math.floor(Math.random() * words.length)]
@@ -25,9 +21,6 @@ export default function App() {
   // copy of guessedLetters that does not reset and holds every letter that has been guessed
   const [allGuessedLetters, setAllGuessedLetters] = useState<string[]>([]);
   console.log('all guessed letters', allGuessedLetters);
-
-  // TODO: use effect to check guessed letters and quiz array and figure out logic to display
-  // correct letters on screen
 
   // check if guessedLetters include quizWord letters on enter click
   useEffect(() => {
@@ -46,7 +39,7 @@ export default function App() {
       Array.from(row.childNodes as NodeListOf<HTMLElement>).forEach(
         (child: HTMLElement, index: number) => {
           if (enteredLetters[index]) {
-            child.innerText = enteredLetters[index];
+            child.innerText = enteredLetters[index].toUpperCase();
           } else {
             child.innerText = '';
           }
