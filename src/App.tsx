@@ -18,6 +18,7 @@ export default function App() {
   const [guessedLetters, setGuessedLetters] = useState<string[]>([]);
   // copy of guessedLetters that does not reset and holds every letter that has been guessed
   const [allGuessedLetters, setAllGuessedLetters] = useState<string[]>([]);
+  console.log(allGuessedLetters);
 
   // display input letters on screen
   useEffect(() => {
@@ -123,9 +124,19 @@ export default function App() {
     console.log('entered Letters', enteredLetters);
     if (enteredLetters.length === 5) {
       setGuessedLetters(enteredLetters);
-      enteredLetters.forEach((letter) =>
-        setAllGuessedLetters((prevState) => [...prevState, letter])
-      );
+      enteredLetters.forEach((letter) => {
+        if (!allGuessedLetters.includes(letter)) {
+          setAllGuessedLetters((prevState) => [...prevState, letter]);
+        }
+        if (
+          quizWord.split('').indexOf(letter) === enteredLetters.indexOf(letter)
+        ) {
+          setAllGuessedLetters((prevState) => [
+            ...prevState,
+            letter + 'correct',
+          ]);
+        }
+      });
 
       setEnteredLetters([]);
       setActiveRow((prevState) => prevState + 1);

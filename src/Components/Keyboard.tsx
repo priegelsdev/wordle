@@ -98,16 +98,30 @@ export default function Keyboard({
     /*     id === 'enter' || id === '27' ? onEnter() : onClick(e); */
   }
 
+  const row = document.getElementById(`row-${1}`);
+  if (row) {
+    Array.from(row.childNodes as NodeListOf<HTMLElement>).forEach(
+      (child: HTMLElement, newIndex: number) => {
+        if (child.id === child.innerText.toLowerCase()) {
+          console.log('test');
+        }
+      }
+    );
+  }
+
   const keyElements = KEYS.map((key, index) => (
     <button
       id={`${index}`}
       key={index}
       className={`aspect-square w-14 border-solid border-2 uppercase font-bold 
         ${
-          guessedLetters.includes(key) && quizWord.split('').includes(key)
-            ? 'bg-green-200'
+          allGuessedLetters.includes(key) &&
+          quizWord.split('').includes(key) &&
+          !allGuessedLetters.includes(key + 'correct')
+            ? 'bg-yellow-200'
             : ''
         }
+        ${allGuessedLetters.includes(key + 'correct') ? 'bg-green-200' : ''}
         ${
           allGuessedLetters.includes(key) && !quizWord.split('').includes(key)
             ? 'bg-asphalt-gray text-white'
