@@ -22,12 +22,12 @@ export default function RowsContainer({
     <div
       key={index}
       id={letter}
-      className="aspect-square w-14 bg-asphalt-gray text-white font-bold flex justify-center items-center"
+      className="aspect-square w-14 border-solid border-2 border-gray-300 font-bold flex justify-center items-center"
     ></div>
   ));
 
   const rowElements = new Array(6).fill(0).map((row, index) => (
-    <div key={index} id={`row-${index}`} className="flex gap-1 mb-1">
+    <div key={index} id={`row-${index}`} className="flex gap-1.5 mb-1.5">
       {letterElements}
     </div>
   ));

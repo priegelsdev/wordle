@@ -52,6 +52,7 @@ export default function App() {
             }, 0);
 
           const letterToCheck = guessedLetters[index];
+          child.classList.add('text-white');
 
           if (guessedLetters[index] === child.id) {
             // change bg color of box if guessed letter is correct or in wrong position
@@ -93,6 +94,8 @@ export default function App() {
                 }
               );
             }
+          } else {
+            child.style.backgroundColor = '#74787B';
           }
         }
       );
