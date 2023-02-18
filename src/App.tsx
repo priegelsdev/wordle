@@ -112,7 +112,12 @@ export default function App() {
   function addEnteredLetter(e: React.MouseEvent<HTMLButtonElement>) {
     const target = e.target as HTMLElement;
 
-    if (target.innerText && enteredLetters.length < 5) {
+    if (
+      target.innerText &&
+      enteredLetters.length < 5 &&
+      !isWinner &&
+      !isLoser
+    ) {
       setEnteredLetters((prevState) => [
         ...prevState,
         target.innerText.toLowerCase(),
@@ -151,7 +156,7 @@ export default function App() {
   }
 
   return (
-    <main className="w-screen h-screen flex flex-col justify-between font-mono">
+    <main className="relative w-screen h-screen flex flex-col justify-between font-mono">
       <header className="flex justify-between p-6 border-solid border-b-2 shadow-lg">
         <div className="w-32"></div>
         <h1 className="text-4xl font-bold">Wordle</h1>
@@ -159,6 +164,35 @@ export default function App() {
           Dark Theme
         </button>
       </header>
+
+      {isWinner && (
+        <div
+          className="absolute top-1/3 left-1/2 transform -translate-x-1/2 -translate-y-1/2 p-6 
+        m-auto text-center bg-gray-100 rounded-md shadow-inner shadow-2xl"
+        >
+          <h3 className="font-bold mb-2">You won! Congrats!</h3>
+          <button
+            onClick={() => location.reload()}
+            className="bg-gray-300 rounded p-1 px-4"
+          >
+            Restart
+          </button>
+        </div>
+      )}
+      {isLoser && (
+        <div
+          className="absolute top-1/3 left-1/2 transform -translate-x-1/2 -translate-y-1/2 p-6 
+      m-auto text-center bg-gray-100 rounded-md shadow-inner shadow-2xl"
+        >
+          <h3 className="font-bold mb-2">Nice try!</h3>
+          <button
+            onClick={() => location.reload()}
+            className="bg-gray-300 rounded p-1 px-4"
+          >
+            Restart
+          </button>
+        </div>
+      )}
 
       <div className="m-auto mb-0 lg text-center text-3xl">
         <RowsContainer
