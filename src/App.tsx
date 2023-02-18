@@ -19,6 +19,10 @@ export default function App() {
   // copy of guessedLetters that does not reset and holds every letter that has been guessed
   const [allGuessedLetters, setAllGuessedLetters] = useState<string[]>([]);
 
+  // determine if winner or loser
+  const isWinner = guessedLetters.join('') == quizWord ? true : false;
+  const isLoser = activeRow === 6 && !isWinner ? true : false;
+
   // display input letters on screen
   useEffect(() => {
     const row = document.getElementById(`row-${activeRow}`);
