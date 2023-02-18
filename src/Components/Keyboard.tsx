@@ -103,8 +103,8 @@ export default function Keyboard({
       key={index}
       className={`aspect-square w-14 border-solid border-2 uppercase font-bold 
         ${
-          allGuessedLetters.includes(key) &&
-          quizWord.split('').includes(key) &&
+          allGuessedLetters.includes(key.toString()) &&
+          quizWord.split('').includes(key.toString()) &&
           !allGuessedLetters.includes(key + 'correct')
             ? 'bg-letter-yellow text-white'
             : ''
@@ -115,7 +115,8 @@ export default function Keyboard({
             : ''
         }
         ${
-          allGuessedLetters.includes(key) && !quizWord.split('').includes(key)
+          allGuessedLetters.includes(key.toString()) &&
+          !quizWord.split('').includes(key.toString())
             ? 'bg-asphalt-gray text-white'
             : ''
         }`}
