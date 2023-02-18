@@ -18,7 +18,6 @@ export default function App() {
   const [guessedLetters, setGuessedLetters] = useState<string[]>([]);
   // copy of guessedLetters that does not reset and holds every letter that has been guessed
   const [allGuessedLetters, setAllGuessedLetters] = useState<string[]>([]);
-  console.log(allGuessedLetters);
 
   // display input letters on screen
   useEffect(() => {
@@ -121,7 +120,6 @@ export default function App() {
 
   // function to lock and compare entered letters to quizWord letters and add to guessed array
   function addGuessedLetters() {
-    console.log('entered Letters', enteredLetters);
     if (enteredLetters.length === 5) {
       setGuessedLetters(enteredLetters);
       enteredLetters.forEach((letter) => {

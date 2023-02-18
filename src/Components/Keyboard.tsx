@@ -95,18 +95,6 @@ export default function Keyboard({
     } else {
       onClick(e);
     }
-    /*     id === 'enter' || id === '27' ? onEnter() : onClick(e); */
-  }
-
-  const row = document.getElementById(`row-${1}`);
-  if (row) {
-    Array.from(row.childNodes as NodeListOf<HTMLElement>).forEach(
-      (child: HTMLElement, newIndex: number) => {
-        if (child.id === child.innerText.toLowerCase()) {
-          console.log('test');
-        }
-      }
-    );
   }
 
   const keyElements = KEYS.map((key, index) => (
