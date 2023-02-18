@@ -57,7 +57,7 @@ export default function App() {
 
           if (guessedLetters[index] === child.id) {
             // change bg color of box if guessed letter is correct or in wrong position
-            child.style.backgroundColor = '#6BAA64';
+            child.classList.add('bg-letter-green');
           } else if (
             guessedLetters[index] != child.id &&
             quizWord.split('').includes(guessedLetters[index])
@@ -68,6 +68,7 @@ export default function App() {
             // to prioritize correct letters, we loop to ONLY check those first and THEN move on to incorrect placed ones
 
             let count = amountLetterInQuizWord;
+            child.classList.add('bg-asphalt-gray');
 
             if (count > 0) {
               Array.from(row.childNodes as NodeListOf<HTMLElement>).forEach(
@@ -89,14 +90,14 @@ export default function App() {
                     quizWord.split('').includes(letterToCheck) &&
                     count > 0
                   ) {
-                    child.style.backgroundColor = '#C9B457';
+                    child.classList.add('bg-letter-yellow');
                     count--;
                   }
                 }
               );
             }
           } else {
-            child.style.backgroundColor = '#74787B';
+            child.classList.add('bg-asphalt-gray');
           }
         }
       );

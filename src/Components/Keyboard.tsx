@@ -106,10 +106,14 @@ export default function Keyboard({
           allGuessedLetters.includes(key) &&
           quizWord.split('').includes(key) &&
           !allGuessedLetters.includes(key + 'correct')
-            ? 'bg-yellow-200'
+            ? 'bg-letter-yellow text-white'
             : ''
         }
-        ${allGuessedLetters.includes(key + 'correct') ? 'bg-green-200' : ''}
+        ${
+          allGuessedLetters.includes(key + 'correct')
+            ? 'bg-letter-green text-white'
+            : ''
+        }
         ${
           allGuessedLetters.includes(key) && !quizWord.split('').includes(key)
             ? 'bg-asphalt-gray text-white'
