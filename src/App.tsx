@@ -53,6 +53,7 @@ export default function App() {
 
           const letterToCheck = guessedLetters[index];
           child.classList.add('text-white');
+          child.classList.remove('border-2');
 
           if (guessedLetters[index] === child.id) {
             // change bg color of box if guessed letter is correct or in wrong position
