@@ -142,16 +142,16 @@ export default function App() {
   }
 
   return (
-    <main className="w-screen h-screen flex flex-col justify-between">
+    <main className="w-screen h-screen flex flex-col justify-between font-mono">
       <header className="flex justify-between p-6 border-solid border-b-2 shadow-lg">
         <div className="w-32"></div>
-        <h1 className="text-3xl underline">WORDLE</h1>
+        <h1 className="text-4xl font-bold">Wordle</h1>
         <button className="bg-gray-800 hover:bg-gray-900 text-white font-bold py-2 px-4 rounded">
           Dark Theme
         </button>
       </header>
 
-      <div className="m-auto mb-0 lg text-center">
+      <div className="m-auto mb-0 lg text-center text-3xl">
         <RowsContainer
           quizWord={quizWord}
           enteredLetters={enteredLetters}
@@ -159,7 +159,7 @@ export default function App() {
         />
       </div>
 
-      <div className="m-auto">
+      <div className="m-auto text-xl">
         <Keyboard
           onClick={addEnteredLetter}
           onEnter={addGuessedLetters}
