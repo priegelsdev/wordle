@@ -20,7 +20,7 @@ const en = (
     xmlns="http://www.w3.org/2000/svg"
     xmlnsXlink="http://www.w3.org/1999/xlink"
     viewBox="0 0 1300 650"
-    width="40"
+    width="35"
     height="20"
   >
     <defs>
@@ -97,16 +97,23 @@ const en = (
 
 type HeaderProps = {
   englishMode: boolean;
+  onClick: () => void;
 };
 
-export default function Header({ englishMode }: HeaderProps) {
+export default function Header({ englishMode, onClick }: HeaderProps) {
   return (
     <header className="flex justify-between p-6 border-solid border-b-2 shadow-lg">
       <div className="w-32"></div>
       <h1 className="text-4xl font-bold">Wordle</h1>
       <div className="flex items-center">
-        <button className="flex mr-4 rounded-sm font-bold">
-          {englishMode ? de : en} {englishMode ? ' DE' : ' EN'}
+        <button
+          // since flags are sized a bit differently, we add different gap depending on which flag is shown
+          className={`flex ${
+            englishMode ? 'gap-0.5' : 'gap-2'
+          } mr-4 rounded-sm font-bold`}
+          onClick={onClick}
+        >
+          {englishMode ? de : en} {englishMode ? 'DE' : 'EN'}
         </button>
         <button className="bg-gray-800 hover:bg-gray-900 text-white font-bold py-2 px-4 rounded">
           Dark Theme

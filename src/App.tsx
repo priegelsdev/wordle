@@ -158,9 +158,15 @@ export default function App() {
     }
   }
 
+  // function to change language
+  function changeLanguage() {
+    console.log('change');
+    setEnglishMode((prevState) => !prevState);
+  }
+
   return (
     <main className="relative w-screen h-screen flex flex-col justify-between font-mono">
-      <Header englishMode={englishMode} />
+      <Header englishMode={englishMode} onClick={changeLanguage} />
 
       {isWinner && (
         <div
