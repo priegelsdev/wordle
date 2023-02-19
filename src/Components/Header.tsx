@@ -137,7 +137,7 @@ type HeaderProps = {
 export default function Header({ englishMode, onClick }: HeaderProps) {
   return (
     <header className="flex items-center justify-between p-6 border-solid border-b-2 shadow-lg">
-      <div className="" /* div exists only for flex to work properly */></div>
+      <div /* div exists only for flex to work properly */></div>
       <h1 className="text-4xl font-bold justify-self-start mr-auto sm:mr-0 sm:ml-24">
         Wordle
       </h1>

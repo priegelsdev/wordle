@@ -91,7 +91,8 @@ export default function Keyboard({
 
   function changeKeyboard() {
     if (!englishMode) {
-      setKeys((prevState) => [...prevState, 'ä', 'ö', 'ü']);
+      // TODO: CHANGE '' BACK WHEN KEYBOARD IS DONE
+      setKeys((prevState) => [...prevState, '', '', 'ä', 'ö', 'ü']);
     } else if (keys.includes('ä')) {
       setKeys(KEYS);
     }
@@ -118,7 +119,7 @@ export default function Keyboard({
     <button
       id={`${index}`}
       key={index}
-      className={`aspect-square w-14 border-solid border-2 uppercase font-bold 
+      className={`aspect-square w-8 py-4 uppercase rounded bg-key-gray font-bold 
         ${
           allGuessedLetters.includes(key.toString()) &&
           quizWord.split('').includes(key.toString()) &&
@@ -136,7 +137,9 @@ export default function Keyboard({
           !quizWord.split('').includes(key.toString())
             ? 'bg-asphalt-gray text-white'
             : ''
-        }`}
+        }
+        ${key === '' ? 'bg-transparent' : ''}`}
+      /* TODO: CHANGE BACK WHEN KEYBOARD IS STYLED PROPERLY */
       onClick={handleClick}
     >
       {key}
@@ -144,7 +147,7 @@ export default function Keyboard({
   ));
 
   return (
-    <div className="w-screen grid grid-rows-4 grid-cols-Keyboard gap-2 justify-center justify-items-center">
+    <div className="w-screen grid grid-rows-4 grid-cols-KeyboardMobile md:grid-cols-Keyboard gap-2 justify-center justify-items-center">
       {keyElements}
     </div>
   );

@@ -6,11 +6,13 @@ module.exports = {
       gridTemplateColumns: {
         // Keyboard grid
         Keyboard: 'repeat(11, minmax(0, 56px))',
+        KeyboardMobile: 'repeat(7, minmax(0, 40px))',
       },
       colors: {
         'asphalt-gray': '#74787B',
         'letter-yellow': '#C9B457',
         'letter-green': '#6BAA64',
+        'key-gray': '#d3d6da',
       },
     },
   },
