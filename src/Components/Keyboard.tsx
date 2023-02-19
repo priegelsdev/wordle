@@ -119,7 +119,7 @@ export default function Keyboard({
     <button
       id={`${index}`}
       key={index}
-      className={`w-7 md:w-8 py-4 uppercase rounded bg-key-gray font-bold 
+      className={`w-8 md:w-8 py-4 uppercase rounded bg-key-gray font-bold 
         ${
           allGuessedLetters.includes(key.toString()) &&
           quizWord.split('').includes(key.toString()) &&
