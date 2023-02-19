@@ -189,7 +189,7 @@ export default function Header({ englishMode, onClick }: HeaderProps) {
           } rounded-sm font-bold`}
           onClick={onClick}
         >
-          {englishMode ? de : en} {englishMode ? 'DE' : 'EN'}
+          {englishMode ? en : de} {englishMode ? 'EN' : 'DE'}
         </button>
         <button>{moon}</button>
       </div>
