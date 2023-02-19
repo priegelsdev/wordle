@@ -100,14 +100,13 @@ type HeaderProps = {
 };
 
 export default function Header({ englishMode }: HeaderProps) {
-  console.log(englishMode);
   return (
     <header className="flex justify-between p-6 border-solid border-b-2 shadow-lg">
       <div className="w-32"></div>
       <h1 className="text-4xl font-bold">Wordle</h1>
-      <div>
-        <button className="mr-4 py-2 px-3 rounded-sm bg-gray-500 text-white font-bold ">
-          {englishMode ? de : en}
+      <div className="flex items-center">
+        <button className="flex mr-4 rounded-sm font-bold">
+          {englishMode ? de : en} {englishMode ? ' DE' : ' EN'}
         </button>
         <button className="bg-gray-800 hover:bg-gray-900 text-white font-bold py-2 px-4 rounded">
           Dark Theme
