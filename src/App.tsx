@@ -201,7 +201,10 @@ export default function App() {
         </div>
       )}
       {isLoser && (
-        <div className="mx-auto mt-4 -mb-4 text-center overline decoration-red-500">
+        <div className="mx-auto mt-4 -mb-4 text-center">
+          <h3 className="font-bold underline decoration-red-500">
+            {quizWord.toUpperCase()}
+          </h3>
           <h3 className="font-bold">Nice try!</h3>
         </div>
       )}
