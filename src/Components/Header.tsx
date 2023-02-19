@@ -108,7 +108,7 @@ export default function Header({ englishMode, onClick }: HeaderProps) {
       <div className="flex items-center">
         <button
           // since flags are sized a bit differently, we add different gap depending on which flag is shown
-          className={`flex ${
+          className={`flex items-center ${
             englishMode ? 'gap-0.5' : 'gap-2'
           } mr-4 rounded-sm font-bold`}
           onClick={onClick}

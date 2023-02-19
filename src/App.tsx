@@ -4,6 +4,7 @@ import Keyboard from './Components/Keyboard';
 import RowsContainer from './Components/RowsContainer';
 import Header from './Components/Header';
 import words from './words.json';
+import worte from './worte.json';
 
 export default function App() {
   // state to hold random word from words.json
@@ -25,6 +26,32 @@ export default function App() {
   // determine if winner or loser
   const isWinner = guessedLetters.join('') == quizWord ? true : false;
   const isLoser = activeRow === 6 && !isWinner ? true : false;
+
+  // reset game and change quizWord depending on language state
+  useEffect(() => {
+    setQuizWord(
+      englishMode
+        ? words[Math.floor(Math.random() * words.length)]
+        : worte[Math.floor(Math.random() * worte.length)]
+    );
+    setGuessedLetters([]);
+    setActiveRow(0);
+    setAllGuessedLetters([]);
+    setEnteredLetters([]);
+
+    for (let i = 0; i < 6; i++) {
+      const row = document.getElementById(`row-${i}`);
+      if (row) {
+        Array.from(row.childNodes as NodeListOf<HTMLElement>).forEach(
+          (child: HTMLElement, index: number) => {
+            child.innerText = '';
+            child.className =
+              'aspect-square w-14 border-solid border-2 border-gray-300 font-bold flex justify-center items-center';
+          }
+        );
+      }
+    }
+  }, [englishMode]);
 
   // display input letters on screen
   useEffect(() => {
