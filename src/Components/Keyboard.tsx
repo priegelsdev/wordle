@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 
 const arrow = (
   <svg
@@ -74,6 +74,7 @@ type KeyboardProps = {
   guessedLetters: string[];
   allGuessedLetters: string[];
   quizWord: string;
+  englishMode: boolean;
 };
 
 export default function Keyboard({
@@ -83,7 +84,23 @@ export default function Keyboard({
   guessedLetters,
   allGuessedLetters,
   quizWord,
+  englishMode,
 }: KeyboardProps) {
+  // KEYS state depending on language
+  const [keys, setKeys] = useState<any[]>(KEYS);
+
+  function changeKeyboard() {
+    if (!englishMode) {
+      setKeys((prevState) => [...prevState, 'ä', 'ö', 'ü']);
+    } else if (keys.includes('ä')) {
+      setKeys(KEYS);
+    }
+  }
+
+  useEffect(() => {
+    changeKeyboard();
+  }, [englishMode]);
+
   // function to run onClick passed down to keyElements
   function handleClick(e: React.MouseEvent<HTMLButtonElement>) {
     const id = e.currentTarget.id;
@@ -97,7 +114,7 @@ export default function Keyboard({
     }
   }
 
-  const keyElements = KEYS.map((key, index) => (
+  const keyElements = keys.map((key, index) => (
     <button
       id={`${index}`}
       key={index}
@@ -127,7 +144,7 @@ export default function Keyboard({
   ));
 
   return (
-    <div className="w-screen grid grid-rows-3 grid-cols-Keyboard gap-2 justify-center justify-items-center">
+    <div className="w-screen grid grid-rows-4 grid-cols-Keyboard gap-2 justify-center justify-items-center">
       {keyElements}
     </div>
   );

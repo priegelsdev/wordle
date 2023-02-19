@@ -5,7 +5,7 @@ module.exports = {
     extend: {
       gridTemplateColumns: {
         // Keyboard grid
-        Keyboard: 'repeat(10, minmax(0, 56px))',
+        Keyboard: 'repeat(11, minmax(0, 56px))',
       },
       colors: {
         'asphalt-gray': '#74787B',

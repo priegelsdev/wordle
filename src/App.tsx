@@ -240,6 +240,7 @@ export default function App() {
           guessedLetters={guessedLetters}
           allGuessedLetters={allGuessedLetters}
           quizWord={quizWord}
+          englishMode={englishMode}
         />
       </div>
 
