@@ -196,35 +196,17 @@ export default function App() {
       <Header englishMode={englishMode} onClick={changeLanguage} />
 
       {isWinner && (
-        <div
-          className="absolute top-1/3 left-1/2 transform -translate-x-1/2 -translate-y-1/2 p-6 
-        m-auto text-center bg-gray-100 rounded-md shadow-inner shadow-2xl"
-        >
-          <h3 className="font-bold mb-2">You won! Congrats!</h3>
-          <button
-            onClick={() => location.reload()}
-            className="bg-gray-300 rounded p-1 px-4"
-          >
-            Restart
-          </button>
+        <div className="mx-auto mt-4 -mb-4 text-center underline decoration-green-500">
+          <h3 className="font-bold text-lg">You won! Congrats!</h3>
         </div>
       )}
       {isLoser && (
-        <div
-          className="absolute top-1/3 left-1/2 transform -translate-x-1/2 -translate-y-1/2 p-6 
-      m-auto text-center bg-gray-100 rounded-md shadow-inner shadow-2xl"
-        >
-          <h3 className="font-bold mb-2">Nice try!</h3>
-          <button
-            onClick={() => location.reload()}
-            className="bg-gray-300 rounded p-1 px-4"
-          >
-            Restart
-          </button>
+        <div className="mx-auto mt-4 -mb-4 text-center overline decoration-red-500">
+          <h3 className="font-bold">Nice try!</h3>
         </div>
       )}
 
-      <div className="my-4 mx-auto p-4 lg text-center text-3xl">
+      <div className="mx-auto my-4 p-4 lg text-center text-3xl">
         <RowsContainer
           quizWord={quizWord}
           enteredLetters={enteredLetters}
