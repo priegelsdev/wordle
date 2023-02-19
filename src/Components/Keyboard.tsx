@@ -119,7 +119,7 @@ export default function Keyboard({
     <button
       id={`${index}`}
       key={index}
-      className={`aspect-square w-8 py-4 uppercase rounded bg-key-gray font-bold 
+      className={`w-7 md:w-8 py-4 uppercase rounded bg-key-gray font-bold 
         ${
           allGuessedLetters.includes(key.toString()) &&
           quizWord.split('').includes(key.toString()) &&
@@ -147,7 +147,7 @@ export default function Keyboard({
   ));
 
   return (
-    <div className="w-screen grid grid-rows-4 grid-cols-KeyboardMobile md:grid-cols-Keyboard gap-2 justify-center justify-items-center">
+    <div className="max-w-md grid grid-rows-4 grid-cols-KeyboardMobile md:grid-cols-Keyboard gap-2 justify-center justify-items-center">
       {keyElements}
     </div>
   );

@@ -192,7 +192,7 @@ export default function App() {
   }
 
   return (
-    <main className="relative w-screen h-screen flex flex-col justify-between font-mono">
+    <main className="relative w-screen h-screen flex flex-col font-mono">
       <Header englishMode={englishMode} onClick={changeLanguage} />
 
       {isWinner && (
@@ -224,7 +224,7 @@ export default function App() {
         </div>
       )}
 
-      <div className="m-auto mb-0 lg text-center text-3xl">
+      <div className="my-4 mx-auto p-4 lg text-center text-3xl">
         <RowsContainer
           quizWord={quizWord}
           enteredLetters={enteredLetters}
@@ -232,7 +232,7 @@ export default function App() {
         />
       </div>
 
-      <div className="m-auto text-xl">
+      <div className="-my-4 mx-auto text-xl">
         <Keyboard
           onClick={addEnteredLetter}
           onEnter={addGuessedLetters}
@@ -243,8 +243,6 @@ export default function App() {
           englishMode={englishMode}
         />
       </div>
-
-      <footer className="p-5 text-center bg-gray-600 text-white">footer</footer>
     </main>
   );
 }
