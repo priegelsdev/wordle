@@ -187,7 +187,6 @@ export default function App() {
 
   // function to change language
   function changeLanguage() {
-    englishMode ? alert('Deutsch') : alert('English');
     setEnglishMode((prevState) => !prevState);
   }
 
