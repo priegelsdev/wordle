@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 
 import Keyboard from './Components/Keyboard';
 import RowsContainer from './Components/RowsContainer';
+import Header from './Components/Header';
 import words from './words.json';
 
 export default function App() {
@@ -18,6 +19,8 @@ export default function App() {
   const [guessedLetters, setGuessedLetters] = useState<string[]>([]);
   // copy of guessedLetters that does not reset and holds every letter that has been guessed
   const [allGuessedLetters, setAllGuessedLetters] = useState<string[]>([]);
+
+  const [englishMode, setEnglishMode] = useState<boolean>(true);
 
   // determine if winner or loser
   const isWinner = guessedLetters.join('') == quizWord ? true : false;
@@ -157,13 +160,7 @@ export default function App() {
 
   return (
     <main className="relative w-screen h-screen flex flex-col justify-between font-mono">
-      <header className="flex justify-between p-6 border-solid border-b-2 shadow-lg">
-        <div className="w-32"></div>
-        <h1 className="text-4xl font-bold">Wordle</h1>
-        <button className="bg-gray-800 hover:bg-gray-900 text-white font-bold py-2 px-4 rounded">
-          Dark Theme
-        </button>
-      </header>
+      <Header englishMode={englishMode} />
 
       {isWinner && (
         <div
