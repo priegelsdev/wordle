@@ -135,7 +135,7 @@ export default function Keyboard({
         ${
           allGuessedLetters.includes(key.toString()) &&
           !quizWord.split('').includes(key.toString())
-            ? 'bg-asphalt-gray text-white'
+            ? 'bg-key-wrong text-white'
             : ''
         }
         ${key === '' ? 'bg-transparent' : ''}`}

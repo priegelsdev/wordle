@@ -13,6 +13,7 @@ module.exports = {
         'letter-yellow': '#C9B457',
         'letter-green': '#6BAA64',
         'key-gray': '#d3d6da',
+        'key-wrong': '#787c7e',
       },
     },
   },

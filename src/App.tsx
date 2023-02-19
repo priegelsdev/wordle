@@ -22,7 +22,7 @@ export default function App() {
   const [allGuessedLetters, setAllGuessedLetters] = useState<string[]>([]);
 
   const [englishMode, setEnglishMode] = useState<boolean>(true);
-
+  console.log(allGuessedLetters);
   // determine if winner or loser
   const isWinner = guessedLetters.join('') == quizWord ? true : false;
   const isLoser = activeRow === 6 && !isWinner ? true : false;
