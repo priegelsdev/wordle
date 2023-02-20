@@ -12,8 +12,7 @@ type LanguageOption = 'en' | 'de';
 
 export default function App() {
   // color themeContext
-  const { darkMode } = useContext(ThemeContext);
-  console.log(darkMode);
+  const { theme } = useContext(ThemeContext);
 
   // state to hold random word from words.json
   const [quizWord, setQuizWord] = useState<string>(
@@ -221,7 +220,7 @@ export default function App() {
   return (
     <main
       className={`relative w-screen h-screen flex flex-col font-mono ${
-        darkMode ? 'bg-gray-900' : ''
+        theme === 'dark' ? 'bg-gray-900' : ''
       }`}
     >
       <Header language={language} onClick={changeLanguage} />

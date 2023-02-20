@@ -15,7 +15,7 @@ export default function RowsContainer({
   const wordArr = quizWord.split('');
 
   // dark mode context
-  const { darkMode, toggleTheme } = useContext(ThemeContext);
+  const { theme, toggleTheme } = useContext(ThemeContext);
 
   // letters mapped out and rendered as boxes wihtout any value; value is stored in the id to later on..
   // ..see if value entered matches id value
@@ -28,8 +28,8 @@ export default function RowsContainer({
     <div
       key={index}
       id={letter}
-      className={`aspect-square w-14 border-solid border-2 border-gray-300 font-bold flex justify-center items-center
-      ${darkMode ? 'border-gray-600 text-white' : ''}
+      className={`aspect-square w-14 border-solid border-2 font-bold flex justify-center items-center
+      ${theme === 'light' ? 'border-gray-300' : 'border-gray-600 text-white'}
       `}
     ></div>
   ));

@@ -1,23 +1,31 @@
-import React, { createContext, ReactNode, useState } from 'react';
+import React, { createContext, ReactNode, useState, useEffect } from 'react';
 
 type ThemeProviderProps = {
   children: ReactNode;
 };
 
+type ThemeOption = 'light' | 'dark';
+
 export const ThemeContext = createContext({
-  darkMode: false,
+  theme: 'light',
   toggleTheme: () => {},
 });
 
 export const ThemeProvider = ({ children }: ThemeProviderProps) => {
-  const [darkMode, setDarkMode] = useState<boolean>(false);
+  const [theme, setTheme] = useState<string>(
+    (localStorage.getItem('theme') as ThemeOption) || 'light'
+  );
 
   function toggleTheme() {
-    setDarkMode((prevState) => !prevState);
+    setTheme(theme === 'light' ? 'dark' : 'light');
   }
 
+  useEffect(() => {
+    localStorage.setItem('theme', theme);
+  }, [theme]);
+
   return (
-    <ThemeContext.Provider value={{ darkMode, toggleTheme }}>
+    <ThemeContext.Provider value={{ theme, toggleTheme }}>
       {children}
     </ThemeContext.Provider>
   );

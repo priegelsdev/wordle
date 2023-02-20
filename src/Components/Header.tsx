@@ -174,12 +174,12 @@ type HeaderProps = {
 };
 
 export default function Header({ language, onClick }: HeaderProps) {
-  const { darkMode, toggleTheme } = useContext(ThemeContext);
+  const { theme, toggleTheme } = useContext(ThemeContext);
 
   return (
     <header
       className={`flex items-center justify-between p-2 sm:p-6 border-solid border-b-2 shadow-lg ${
-        darkMode ? 'bg-gray-900 text-white' : ''
+        theme === 'dark' ? 'bg-gray-900 text-white' : ''
       }`}
     >
       <div /* div exists only for flex to work properly */></div>
@@ -200,7 +200,7 @@ export default function Header({ language, onClick }: HeaderProps) {
         >
           {language === 'en' ? en : de} {language === 'en' ? 'EN' : 'DE'}
         </button>
-        <button onClick={toggleTheme}>{darkMode ? moon : sun}</button>
+        <button onClick={toggleTheme}>{theme === 'dark' ? moon : sun}</button>
       </div>
     </header>
   );
