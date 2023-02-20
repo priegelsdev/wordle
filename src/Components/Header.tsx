@@ -166,11 +166,11 @@ const restart = (
 );
 
 type HeaderProps = {
-  englishMode: boolean;
+  language: string;
   onClick: () => void;
 };
 
-export default function Header({ englishMode, onClick }: HeaderProps) {
+export default function Header({ language, onClick }: HeaderProps) {
   return (
     <header className="flex items-center justify-between p-2 sm:p-6 border-solid border-b-2 shadow-lg">
       <div /* div exists only for flex to work properly */></div>
@@ -185,11 +185,11 @@ export default function Header({ englishMode, onClick }: HeaderProps) {
         <button
           // since flags are sized a bit differently, we add different gap depending on which flag is shown
           className={`flex items-center ${
-            englishMode ? 'gap-0.5' : ''
+            language === 'en' ? 'gap-0.5' : ''
           } rounded-sm font-bold`}
           onClick={onClick}
         >
-          {englishMode ? en : de} {englishMode ? 'EN' : 'DE'}
+          {language === 'en' ? en : de} {language === 'en' ? 'EN' : 'DE'}
         </button>
         <button>{sun}</button>
       </div>

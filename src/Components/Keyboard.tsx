@@ -74,7 +74,7 @@ type KeyboardProps = {
   guessedLetters: string[];
   allGuessedLetters: string[];
   quizWord: string;
-  englishMode: boolean;
+  language: string;
 };
 
 export default function Keyboard({
@@ -84,14 +84,15 @@ export default function Keyboard({
   guessedLetters,
   allGuessedLetters,
   quizWord,
-  englishMode,
+  language,
 }: KeyboardProps) {
   // KEYS state depending on language
   const [keys, setKeys] = useState<any[]>(KEYS);
 
   function changeKeyboard() {
-    if (!englishMode) {
+    if (language === 'de') {
       // TODO: CHANGE '' BACK WHEN KEYBOARD IS DONE
+      setKeys(KEYS);
       setKeys((prevState) => [...prevState, '', '', 'ä', 'ö', 'ü']);
     } else if (keys.includes('ä')) {
       setKeys(KEYS);
@@ -100,7 +101,7 @@ export default function Keyboard({
 
   useEffect(() => {
     changeKeyboard();
-  }, [englishMode]);
+  }, [language]);
 
   // function to run onClick passed down to keyElements
   function handleClick(e: React.MouseEvent<HTMLButtonElement>) {

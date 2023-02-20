@@ -6,6 +6,8 @@ import Header from './Components/Header';
 import words from './words.json';
 import worte from './worte.json';
 
+type LanguageOption = 'en' | 'de';
+
 export default function App() {
   // state to hold random word from words.json
   const [quizWord, setQuizWord] = useState<string>(
@@ -21,7 +23,9 @@ export default function App() {
   // copy of guessedLetters that does not reset and holds every letter that has been guessed
   const [allGuessedLetters, setAllGuessedLetters] = useState<string[]>([]);
 
-  const [englishMode, setEnglishMode] = useState<boolean>(true);
+  const [language, setLanguage] = useState<LanguageOption>(
+    (localStorage.getItem('language') as LanguageOption) || 'en'
+  );
   console.log(allGuessedLetters);
   // determine if winner or loser
   const isWinner = guessedLetters.join('') == quizWord ? true : false;
@@ -30,7 +34,7 @@ export default function App() {
   // reset game and change quizWord depending on language state
   useEffect(() => {
     setQuizWord(
-      englishMode
+      language === 'en'
         ? words[Math.floor(Math.random() * words.length)]
         : worte[Math.floor(Math.random() * worte.length)]
     );
@@ -51,7 +55,9 @@ export default function App() {
         );
       }
     }
-  }, [englishMode]);
+
+    localStorage.setItem('language', language);
+  }, [language]);
 
   // display input letters on screen
   useEffect(() => {
@@ -169,8 +175,8 @@ export default function App() {
   // has to include a word from english word list in english mode, from german word list in german mode
   function addGuessedLetters() {
     if (
-      (englishMode && words.includes(enteredLetters.join(''))) ||
-      (!englishMode && worte.includes(enteredLetters.join('')))
+      (language === 'en' && words.includes(enteredLetters.join(''))) ||
+      (language === 'de' && worte.includes(enteredLetters.join('')))
     ) {
       setGuessedLetters(enteredLetters);
       enteredLetters.forEach((letter) => {
@@ -203,12 +209,12 @@ export default function App() {
 
   // function to change language
   function changeLanguage() {
-    setEnglishMode((prevState) => !prevState);
+    setLanguage(language === 'en' ? 'de' : 'en');
   }
 
   return (
     <main className="relative w-screen h-screen flex flex-col font-mono">
-      <Header englishMode={englishMode} onClick={changeLanguage} />
+      <Header language={language} onClick={changeLanguage} />
 
       {isWinner && (
         <div className="mx-auto mt-4 -mb-4 text-center underline decoration-green-500">
@@ -240,7 +246,7 @@ export default function App() {
           guessedLetters={guessedLetters}
           allGuessedLetters={allGuessedLetters}
           quizWord={quizWord}
-          englishMode={englishMode}
+          language={language}
         />
       </div>
     </main>
