@@ -7,7 +7,7 @@ type ThemeProviderProps = {
 type ThemeOption = 'light' | 'dark';
 
 export const ThemeContext = createContext({
-  theme: null,
+  theme: 'light',
   toggleTheme: () => {},
 });
 
