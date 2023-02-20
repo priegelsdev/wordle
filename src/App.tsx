@@ -163,10 +163,11 @@ export default function App() {
   }
 
   // function to lock and compare entered letters to quizWord letters and add to guessed array
+  // has to include a word from english word list in english mode, from german word list in german mode
   function addGuessedLetters() {
     if (
-      words.includes(enteredLetters.join('')) ||
-      worte.includes(enteredLetters.join(''))
+      (englishMode && words.includes(enteredLetters.join(''))) ||
+      (!englishMode && worte.includes(enteredLetters.join('')))
     ) {
       setGuessedLetters(enteredLetters);
       enteredLetters.forEach((letter) => {
