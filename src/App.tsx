@@ -229,15 +229,31 @@ export default function App() {
 
       {isWinner && (
         <div className="mx-auto mt-4 -mb-4 text-center underline decoration-green-500">
-          <h3 className="font-bold text-lg">You won! Congrats!</h3>
+          <h3
+            className={`font-bold text-lg ${
+              theme === 'dark' ? 'text-white' : ''
+            }`}
+          >
+            You won! Congrats!
+          </h3>
         </div>
       )}
       {isLoser && (
         <div className="mx-auto mt-4 -mb-4 text-center">
-          <h3 className="font-bold underline decoration-red-500">
+          <h3
+            className={`font-bold text-lg underline decoration-red-500 ${
+              theme === 'dark' ? 'text-white' : ''
+            }`}
+          >
             {quizWord.toUpperCase()}
           </h3>
-          <h3 className="font-bold">Nice try!</h3>
+          <h3
+            className={`font-bold text-lg ${
+              theme === 'dark' ? 'text-white' : ''
+            }`}
+          >
+            Nice try!
+          </h3>
         </div>
       )}
 
