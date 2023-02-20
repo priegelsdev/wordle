@@ -37,34 +37,34 @@ const enter = (
 );
 
 const KEYS = [
-  'a',
-  'b',
-  'c',
-  'd',
+  'q',
+  'w',
   'e',
+  'r',
+  't',
+  'y',
+  'u',
+  'i',
+  'o',
+  'p',
+  'a',
+  's',
+  'd',
   'f',
   'g',
   'h',
-  'i',
-  'j',
+  'q',
   'k',
   'l',
-  'm',
-  'n',
-  'o',
-  'p',
-  'q',
-  'r',
-  's',
-  't',
-  'u',
-  'v',
-  'w',
-  'x',
-  'y',
-  'z',
-  arrow,
   enter,
+  'z',
+  'x',
+  'c',
+  'v',
+  'b',
+  'n',
+  'm',
+  arrow,
 ];
 
 type KeyboardProps = {
@@ -106,10 +106,10 @@ export default function Keyboard({
   // function to run onClick passed down to keyElements
   function handleClick(e: React.MouseEvent<HTMLButtonElement>) {
     const id = e.currentTarget.id;
-
-    if (id === 'enter' || id === '27') {
+    console.log(e.currentTarget.id);
+    if (id === 'enter ') {
       onEnter();
-    } else if (id === 'arrow' || id === '26') {
+    } else if (id === ' arrow') {
       onRemove(e);
     } else {
       onClick(e);
@@ -118,7 +118,7 @@ export default function Keyboard({
 
   const keyElements = keys.map((key, index) => (
     <button
-      id={`${index}`}
+      id={`${key == enter ? 'enter' : ''} ${key == arrow ? 'arrow' : ''}`}
       key={index}
       className={`w-8 md:w-8 py-4 uppercase rounded bg-key-gray font-bold 
         ${

@@ -25,7 +25,6 @@ export default function RowsContainer({
   // for each prior row, create copy of guessed letters and fill out accordingly
 
   const letterElements = wordArr.map((letter, index) => {
-    console.log(theme, 'theme');
     return (
       <div
         key={index}

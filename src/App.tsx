@@ -14,10 +14,6 @@ export default function App() {
   // color themeContext
   const { theme } = useContext(ThemeContext);
 
-  useEffect(() => {
-    console.log('dark mode');
-  });
-
   // state to hold random word from words.json
   const [quizWord, setQuizWord] = useState<string>(
     words[Math.floor(Math.random() * words.length)]
