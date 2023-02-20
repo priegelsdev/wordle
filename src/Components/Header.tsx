@@ -117,7 +117,7 @@ const en = (
 const moon = (
   <svg
     xmlns="http://www.w3.org/2000/svg"
-    fill="none"
+    fill="#ffed00"
     viewBox="0 0 24 24"
     strokeWidth={1.5}
     stroke="currentColor"
@@ -134,7 +134,7 @@ const moon = (
 const sun = (
   <svg
     xmlns="http://www.w3.org/2000/svg"
-    fill="none"
+    fill="#ffed00"
     viewBox="0 0 24 24"
     strokeWidth={1.5}
     stroke="currentColor"

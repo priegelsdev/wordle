@@ -186,6 +186,8 @@ export default function App() {
 
       setEnteredLetters([]);
       setActiveRow((prevState) => prevState + 1);
+    } else {
+      console.log('not accepted');
     }
   }
 
