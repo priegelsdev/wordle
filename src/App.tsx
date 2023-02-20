@@ -57,8 +57,11 @@ export default function App() {
         Array.from(row.childNodes as NodeListOf<HTMLElement>).forEach(
           (child: HTMLElement, index: number) => {
             child.innerText = '';
-            child.className =
-              'aspect-square w-14 border-solid border-2 border-gray-300 font-bold flex justify-center items-center';
+            child.className = `aspect-square w-14 border-solid border-2 ${
+              theme === 'light'
+                ? 'border-gray-300'
+                : 'border-gray-600 text-white'
+            } font-bold flex justify-center items-center`;
           }
         );
       }
