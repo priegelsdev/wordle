@@ -65,6 +65,9 @@ const KEYS = [
   'n',
   'm',
   arrow,
+  'ä',
+  'ö',
+  'ü',
 ];
 
 type KeyboardProps = {
@@ -86,23 +89,6 @@ export default function Keyboard({
   quizWord,
   language,
 }: KeyboardProps) {
-  // KEYS state depending on language
-  const [keys, setKeys] = useState<any[]>(KEYS);
-
-  function changeKeyboard() {
-    if (language === 'de') {
-      // TODO: CHANGE '' BACK WHEN KEYBOARD IS DONE
-      setKeys(KEYS);
-      setKeys((prevState) => [...prevState, '', '', 'ä', 'ö', 'ü']);
-    } else if (keys.includes('ä')) {
-      setKeys(KEYS);
-    }
-  }
-
-  useEffect(() => {
-    changeKeyboard();
-  }, [language]);
-
   // function to run onClick passed down to keyElements
   function handleClick(e: React.MouseEvent<HTMLButtonElement>) {
     const id = e.currentTarget.id;
@@ -116,7 +102,7 @@ export default function Keyboard({
     }
   }
 
-  const keyElements = keys.map((key, index) => (
+  const keyElements = KEYS.map((key, index) => (
     <button
       id={`${key == enter ? 'enter' : ''} ${key == arrow ? 'arrow' : ''}`}
       key={index}
@@ -143,7 +129,6 @@ export default function Keyboard({
         ${key === arrow || key === enter ? 'w-12 md:w-12' : ''}
 
         ${key === '' ? 'bg-transparent' : ''}`}
-      /* TODO: CHANGE BACK WHEN KEYBOARD IS STYLED PROPERLY */
       onClick={handleClick}
     >
       {key}
@@ -162,11 +147,16 @@ export default function Keyboard({
     <div className="flex justify-center gap-1">{keyElements.slice(19, 28)}</div>
   );
 
+  const optionalRow = (
+    <div className="flex justify-center gap-1">{keyElements.slice(28, 31)}</div>
+  );
+
   return (
     <div className="w-screen w-max-10/12 flex flex-col justify-center gap-1">
       {firstRow}
       {secondRow}
       {thirdRow}
+      {language == 'de' && optionalRow}
     </div>
   );
 }
