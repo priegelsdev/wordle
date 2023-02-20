@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { ThemeProvider } from './context/ThemeContext';
 
 import Keyboard from './Components/Keyboard';
 import RowsContainer from './Components/RowsContainer';
@@ -6,6 +7,7 @@ import Header from './Components/Header';
 import words from './words.json';
 import worte from './worte.json';
 
+// we create type for language options
 type LanguageOption = 'en' | 'de';
 
 export default function App() {
@@ -213,42 +215,44 @@ export default function App() {
   }
 
   return (
-    <main className="relative w-screen h-screen flex flex-col font-mono">
-      <Header language={language} onClick={changeLanguage} />
+    <ThemeProvider>
+      <main className="relative w-screen h-screen flex flex-col font-mono">
+        <Header language={language} onClick={changeLanguage} />
 
-      {isWinner && (
-        <div className="mx-auto mt-4 -mb-4 text-center underline decoration-green-500">
-          <h3 className="font-bold text-lg">You won! Congrats!</h3>
+        {isWinner && (
+          <div className="mx-auto mt-4 -mb-4 text-center underline decoration-green-500">
+            <h3 className="font-bold text-lg">You won! Congrats!</h3>
+          </div>
+        )}
+        {isLoser && (
+          <div className="mx-auto mt-4 -mb-4 text-center">
+            <h3 className="font-bold underline decoration-red-500">
+              {quizWord.toUpperCase()}
+            </h3>
+            <h3 className="font-bold">Nice try!</h3>
+          </div>
+        )}
+
+        <div className="mx-auto my-4 p-4 lg text-center text-3xl">
+          <RowsContainer
+            quizWord={quizWord}
+            enteredLetters={enteredLetters}
+            activeRow={activeRow}
+          />
         </div>
-      )}
-      {isLoser && (
-        <div className="mx-auto mt-4 -mb-4 text-center">
-          <h3 className="font-bold underline decoration-red-500">
-            {quizWord.toUpperCase()}
-          </h3>
-          <h3 className="font-bold">Nice try!</h3>
+
+        <div className="-my-4 mx-auto text-xl">
+          <Keyboard
+            onClick={addEnteredLetter}
+            onEnter={addGuessedLetters}
+            onRemove={removeEnteredLetter}
+            guessedLetters={guessedLetters}
+            allGuessedLetters={allGuessedLetters}
+            quizWord={quizWord}
+            language={language}
+          />
         </div>
-      )}
-
-      <div className="mx-auto my-4 p-4 lg text-center text-3xl">
-        <RowsContainer
-          quizWord={quizWord}
-          enteredLetters={enteredLetters}
-          activeRow={activeRow}
-        />
-      </div>
-
-      <div className="-my-4 mx-auto text-xl">
-        <Keyboard
-          onClick={addEnteredLetter}
-          onEnter={addGuessedLetters}
-          onRemove={removeEnteredLetter}
-          guessedLetters={guessedLetters}
-          allGuessedLetters={allGuessedLetters}
-          quizWord={quizWord}
-          language={language}
-        />
-      </div>
-    </main>
+      </main>
+    </ThemeProvider>
   );
 }

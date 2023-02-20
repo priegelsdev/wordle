@@ -1,3 +1,6 @@
+import React, { useContext } from 'react';
+import { ThemeContext } from '../context/ThemeContext';
+
 // SVGs
 
 const copy = (
@@ -171,6 +174,8 @@ type HeaderProps = {
 };
 
 export default function Header({ language, onClick }: HeaderProps) {
+  const { darkMode, toggleTheme } = useContext(ThemeContext);
+
   return (
     <header className="flex items-center justify-between p-2 sm:p-6 border-solid border-b-2 shadow-lg">
       <div /* div exists only for flex to work properly */></div>
@@ -191,7 +196,7 @@ export default function Header({ language, onClick }: HeaderProps) {
         >
           {language === 'en' ? en : de} {language === 'en' ? 'EN' : 'DE'}
         </button>
-        <button>{sun}</button>
+        <button onClick={toggleTheme}>{darkMode ? moon : sun}</button>
       </div>
     </header>
   );
