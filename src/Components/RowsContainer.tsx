@@ -1,3 +1,6 @@
+import React, { useContext } from 'react';
+import { ThemeContext } from '../context/ThemeContext';
+
 type RowsContainerProps = {
   quizWord: string;
   enteredLetters: string[];
@@ -11,6 +14,9 @@ export default function RowsContainer({
 }: RowsContainerProps) {
   const wordArr = quizWord.split('');
 
+  // dark mode context
+  const { darkMode, toggleTheme } = useContext(ThemeContext);
+
   // letters mapped out and rendered as boxes wihtout any value; value is stored in the id to later on..
   // ..see if value entered matches id value
   // likely needed to think through again as logic gets added to compare entered value and display diff colors
@@ -22,7 +28,9 @@ export default function RowsContainer({
     <div
       key={index}
       id={letter}
-      className="aspect-square w-14 border-solid border-2 border-gray-300 font-bold flex justify-center items-center"
+      className={`aspect-square w-14 border-solid border-2 border-gray-300 font-bold flex justify-center items-center
+      ${darkMode ? 'border-gray-600 text-white' : ''}
+      `}
     ></div>
   ));
 
