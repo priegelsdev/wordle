@@ -139,6 +139,9 @@ export default function Keyboard({
             ? 'bg-key-wrong text-white'
             : ''
         }
+
+        ${key === arrow || key === enter ? 'w-12 md:w-12' : ''}
+
         ${key === '' ? 'bg-transparent' : ''}`}
       /* TODO: CHANGE BACK WHEN KEYBOARD IS STYLED PROPERLY */
       onClick={handleClick}
@@ -147,9 +150,23 @@ export default function Keyboard({
     </button>
   ));
 
+  const firstRow = (
+    <div className="flex justify-center gap-1">{keyElements.slice(0, 10)}</div>
+  );
+
+  const secondRow = (
+    <div className="flex justify-center gap-1">{keyElements.slice(10, 19)}</div>
+  );
+
+  const thirdRow = (
+    <div className="flex justify-center gap-1">{keyElements.slice(19, 28)}</div>
+  );
+
   return (
-    <div className="max-w-md grid grid-rows-4 grid-cols-KeyboardMobile md:grid-cols-Keyboard gap-2 justify-center justify-items-center">
-      {keyElements}
+    <div className="w-screen w-max-10/12 flex flex-col justify-center gap-1">
+      {firstRow}
+      {secondRow}
+      {thirdRow}
     </div>
   );
 }
