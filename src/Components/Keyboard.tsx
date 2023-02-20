@@ -136,19 +136,27 @@ export default function Keyboard({
   ));
 
   const firstRow = (
-    <div className="flex justify-center gap-1">{keyElements.slice(0, 10)}</div>
+    <div className="flex justify-center gap-1 md:gap-1.5">
+      {keyElements.slice(0, 10)}
+    </div>
   );
 
   const secondRow = (
-    <div className="flex justify-center gap-1">{keyElements.slice(10, 19)}</div>
+    <div className="flex justify-center gap-1 md:gap-1.5">
+      {keyElements.slice(10, 19)}
+    </div>
   );
 
   const thirdRow = (
-    <div className="flex justify-center gap-1">{keyElements.slice(19, 28)}</div>
+    <div className="flex justify-center gap-1 md:gap-1.5">
+      {keyElements.slice(19, 28)}
+    </div>
   );
 
   const optionalRow = (
-    <div className="flex justify-center gap-1">{keyElements.slice(28, 31)}</div>
+    <div className="flex justify-center gap-1 md:gap-1.5">
+      {keyElements.slice(28, 31)}
+    </div>
   );
 
   return (
