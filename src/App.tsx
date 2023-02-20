@@ -61,8 +61,10 @@ export default function App() {
         (child: HTMLElement, index: number) => {
           if (enteredLetters[index]) {
             child.innerText = enteredLetters[index].toUpperCase();
+            child.classList.add('border-gray-600');
           } else {
             child.innerText = '';
+            child.classList.remove('border-gray-600');
           }
         }
       );
