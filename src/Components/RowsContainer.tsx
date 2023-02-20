@@ -24,15 +24,18 @@ export default function RowsContainer({
   // if active row is row id, then render out letters in that row
   // for each prior row, create copy of guessed letters and fill out accordingly
 
-  const letterElements = wordArr.map((letter, index) => (
-    <div
-      key={index}
-      id={letter}
-      className={`aspect-square w-14 border-solid border-2 font-bold flex justify-center items-center
+  const letterElements = wordArr.map((letter, index) => {
+    console.log(theme, 'theme');
+    return (
+      <div
+        key={index}
+        id={letter}
+        className={`aspect-square w-14 border-solid border-2 font-bold flex justify-center items-center
       ${theme === 'light' ? 'border-gray-300' : 'border-gray-600 text-white'}
       `}
-    ></div>
-  ));
+      ></div>
+    );
+  });
 
   const rowElements = new Array(6).fill(0).map((row, index) => (
     <div key={index} id={`row-${index}`} className="flex gap-1.5 mb-1.5">

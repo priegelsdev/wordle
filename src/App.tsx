@@ -14,6 +14,10 @@ export default function App() {
   // color themeContext
   const { theme } = useContext(ThemeContext);
 
+  useEffect(() => {
+    console.log('dark mode');
+  });
+
   // state to hold random word from words.json
   const [quizWord, setQuizWord] = useState<string>(
     words[Math.floor(Math.random() * words.length)]
@@ -31,7 +35,6 @@ export default function App() {
   const [language, setLanguage] = useState<LanguageOption>(
     (localStorage.getItem('language') as LanguageOption) || 'en'
   );
-  console.log(allGuessedLetters);
   // determine if winner or loser
   const isWinner = guessedLetters.join('') == quizWord ? true : false;
   const isLoser = activeRow === 6 && !isWinner ? true : false;
@@ -150,7 +153,7 @@ export default function App() {
         }
       );
     }
-  }, [guessedLetters]);
+  }, [guessedLetters, theme]);
 
   // function to add letter to active row
   function addEnteredLetter(e: React.MouseEvent<HTMLButtonElement>) {
