@@ -187,7 +187,14 @@ export default function App() {
       setEnteredLetters([]);
       setActiveRow((prevState) => prevState + 1);
     } else {
-      console.log('not accepted');
+      document
+        .getElementById(`row-${activeRow}`)
+        ?.classList.add('animate-row-shake');
+      setTimeout(() => {
+        document
+          .getElementById(`row-${activeRow}`)
+          ?.classList.remove('animate-row-shake');
+      }, 800);
     }
   }
 

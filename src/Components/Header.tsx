@@ -191,7 +191,7 @@ export default function Header({ englishMode, onClick }: HeaderProps) {
         >
           {englishMode ? en : de} {englishMode ? 'EN' : 'DE'}
         </button>
-        <button>{moon}</button>
+        <button>{sun}</button>
       </div>
     </header>
   );
