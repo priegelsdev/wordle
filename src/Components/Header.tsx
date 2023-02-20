@@ -41,9 +41,9 @@ const en = (
   <svg
     xmlns="http://www.w3.org/2000/svg"
     xmlnsXlink="http://www.w3.org/1999/xlink"
-    viewBox="0 0 1300 650"
+    viewBox="0 0 1300 750"
     width="35"
-    height="20"
+    height="25"
   >
     <defs>
       <polygon
@@ -193,8 +193,8 @@ export default function Header({ language, onClick }: HeaderProps) {
         <button onClick={() => location.reload()}>{restart}</button>
         <button
           // since flags are sized a bit differently, we add different gap depending on which flag is shown
-          className={`flex items-center ${
-            language === 'en' ? 'gap-0.5' : ''
+          className={`flex items-center w-12 ${
+            language === 'en' ? 'gap-0.5' : 'gap-0.5'
           } rounded-sm font-bold`}
           onClick={onClick}
         >
