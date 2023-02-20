@@ -122,8 +122,8 @@ const moon = (
     xmlns="http://www.w3.org/2000/svg"
     fill="#ffed00"
     viewBox="0 0 24 24"
-    strokeWidth={1.5}
-    stroke="currentColor"
+    strokeWidth={0.5}
+    stroke="whitesmoke"
     className="w-6 h-6"
   >
     <path
@@ -177,7 +177,11 @@ export default function Header({ language, onClick }: HeaderProps) {
   const { darkMode, toggleTheme } = useContext(ThemeContext);
 
   return (
-    <header className="flex items-center justify-between p-2 sm:p-6 border-solid border-b-2 shadow-lg">
+    <header
+      className={`flex items-center justify-between p-2 sm:p-6 border-solid border-b-2 shadow-lg ${
+        darkMode ? 'bg-gray-900 text-white' : ''
+      }`}
+    >
       <div /* div exists only for flex to work properly */></div>
       <div className="flex items-center mr-auto ml-1 sm:-mr-32">
         {copy}
