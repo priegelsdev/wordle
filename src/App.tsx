@@ -164,7 +164,10 @@ export default function App() {
 
   // function to lock and compare entered letters to quizWord letters and add to guessed array
   function addGuessedLetters() {
-    if (enteredLetters.length === 5) {
+    if (
+      words.includes(enteredLetters.join('')) ||
+      worte.includes(enteredLetters.join(''))
+    ) {
       setGuessedLetters(enteredLetters);
       enteredLetters.forEach((letter) => {
         if (!allGuessedLetters.includes(letter)) {
