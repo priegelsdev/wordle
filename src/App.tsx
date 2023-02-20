@@ -61,10 +61,10 @@ export default function App() {
         (child: HTMLElement, index: number) => {
           if (enteredLetters[index]) {
             child.innerText = enteredLetters[index].toUpperCase();
-            child.classList.add('border-gray-600');
+            child.classList.add('border-gray-500');
           } else {
             child.innerText = '';
-            child.classList.remove('border-gray-600');
+            child.classList.remove('border-gray-500');
           }
         }
       );
@@ -72,6 +72,7 @@ export default function App() {
   }, [enteredLetters]);
 
   // check if guessedLetters include quizWord letters on enter click
+  // apply styling to input letters
   useEffect(() => {
     const row = document.getElementById(`row-${activeRow - 1}`);
     if (row) {
