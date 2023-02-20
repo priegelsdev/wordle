@@ -192,10 +192,7 @@ export default function Header({ language, onClick }: HeaderProps) {
       <div className="flex items-center gap-3 mx-2">
         <button onClick={() => location.reload()}>{restart}</button>
         <button
-          // since flags are sized a bit differently, we add different gap depending on which flag is shown
-          className={`flex items-center w-12 ${
-            language === 'en' ? 'gap-0.5' : 'gap-0.5'
-          } rounded-sm font-bold`}
+          className={`flex items-center w-12 gap-0.5 rounded-sm font-bold`}
           onClick={onClick}
         >
           {language === 'en' ? en : de} {language === 'en' ? 'EN' : 'DE'}
