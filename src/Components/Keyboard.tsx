@@ -106,7 +106,7 @@ export default function Keyboard({
     <button
       id={`${key == enter ? 'enter' : ''} ${key == arrow ? 'arrow' : ''}`}
       key={index}
-      className={`w-8 md:w-8 py-4 uppercase rounded bg-key-gray font-bold 
+      className={`py-4 uppercase rounded bg-key-gray font-bold 
         ${
           allGuessedLetters.includes(key.toString()) &&
           quizWord.split('').includes(key.toString()) &&
@@ -126,7 +126,7 @@ export default function Keyboard({
             : ''
         }
 
-        ${key === arrow || key === enter ? 'w-12 md:w-12' : ''}
+        ${key === arrow || key === enter ? 'w-12 md:w-12' : 'w-8 md:w-8'}
 
         ${key === '' ? 'bg-transparent' : ''}`}
       onClick={handleClick}
