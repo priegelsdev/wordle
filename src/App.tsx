@@ -6,6 +6,7 @@ import RowsContainer from './Components/RowsContainer';
 import Header from './Components/Header';
 import words from './words.json';
 import worte from './worte.json';
+import alleWorte from './alleWorte';
 
 // we create type for language options
 type LanguageOption = 'en' | 'de';
@@ -91,7 +92,7 @@ export default function App() {
       const row = document.getElementById(`row-${i}`);
       if (row) {
         Array.from(row.childNodes as NodeListOf<HTMLElement>).forEach(
-          (child: HTMLElement, index: number) => {
+          (child: HTMLElement) => {
             child.classList.add('text-white');
             child.classList.remove('border-2');
 
@@ -141,6 +142,7 @@ export default function App() {
   function addGuessedLetters() {
     if (
       (language === 'en' && words.includes(enteredLetters.join(''))) ||
+      (language === 'de' && alleWorte.includes(enteredLetters.join(''))) ||
       (language === 'de' && worte.includes(enteredLetters.join('')))
     ) {
       setGuessedLetters(enteredLetters);
