@@ -87,72 +87,41 @@ export default function App() {
   // check if guessedLetters include quizWord letters on enter click
   // apply styling to input letters
   useEffect(() => {
-    const row = document.getElementById(`row-${activeRow - 1}`);
-    if (row) {
-      Array.from(row.childNodes as NodeListOf<HTMLElement>).forEach(
-        (child: HTMLElement, index: number) => {
-          // check how many times the entered letter is in the quiz word
-          const amountLetterInQuizWord = quizWord
-            .split('')
-            .reduce((acc, val) => {
-              if (val === guessedLetters[index]) {
-                acc++;
-              }
-              return acc;
-            }, 0);
-
-          const letterToCheck = guessedLetters[index];
-          child.classList.add('text-white');
-          child.classList.remove('border-2');
-
-          if (guessedLetters[index] === child.id) {
-            // change bg color of box if guessed letter is correct or in wrong position
-            child.classList.add('bg-letter-green');
-          } else if (
-            guessedLetters[index] != child.id &&
-            quizWord.split('').includes(guessedLetters[index])
-          ) {
-            // LOGIC:
-            // if the letter is included in quizWord, determine how many times (var count) and then loop through the row again;
-            // as long as count is > 0, loop through the row again and for each time the letter is found, count--
-            // to prioritize correct letters, we loop to ONLY check those first and THEN move on to incorrect placed ones
-
-            let count = amountLetterInQuizWord;
-            child.classList.add('bg-asphalt-gray');
-
-            if (count > 0) {
-              Array.from(row.childNodes as NodeListOf<HTMLElement>).forEach(
-                (child: HTMLElement, newIndex: number) => {
-                  if (
-                    letterToCheck === guessedLetters[newIndex] &&
-                    letterToCheck === child.id
-                  ) {
-                    count--;
-                  }
+    for (let i = 0; i < activeRow; i++) {
+      const row = document.getElementById(`row-${i}`);
+      if (row) {
+        Array.from(row.childNodes as NodeListOf<HTMLElement>).forEach(
+          (child: HTMLElement, index: number) => {
+            // check how many times the entered letter is in the quiz word
+            const amountLetterInQuizWord = quizWord
+              .split('')
+              .reduce((acc, val) => {
+                if (val === child.innerText.toLowerCase()) {
+                  acc++;
                 }
-              );
+                return acc;
+              }, 0);
 
-              Array.from(row.childNodes as NodeListOf<HTMLElement>).forEach(
-                (child: HTMLElement, newIndex: number) => {
-                  if (
-                    letterToCheck != child.id &&
-                    letterToCheck === guessedLetters[newIndex] &&
-                    quizWord.split('').includes(letterToCheck) &&
-                    count > 0
-                  ) {
-                    child.classList.add('bg-letter-yellow');
-                    count--;
-                  }
-                }
-              );
+            const letterToCheck = guessedLetters[index];
+            child.classList.add('text-white');
+            child.classList.remove('border-2');
+
+            if (child.innerText.toLowerCase() === child.id) {
+              // change bg color of box if guessed letter is correct or in wrong position
+              child.classList.add('bg-letter-green');
+            } else if (
+              child.innerText.toLowerCase() != child.id &&
+              quizWord.split('').includes(child.innerText.toLowerCase())
+            ) {
+              child.classList.add('bg-letter-yellow');
+            } else {
+              child.classList.add('bg-asphalt-gray');
             }
-          } else {
-            child.classList.add('bg-asphalt-gray');
           }
-        }
-      );
+        );
+      }
     }
-  }, [guessedLetters, theme]);
+  }, [activeRow, theme]);
 
   // function to add letter to active row
   function addEnteredLetter(e: React.MouseEvent<HTMLButtonElement>) {

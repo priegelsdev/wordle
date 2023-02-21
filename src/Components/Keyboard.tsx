@@ -53,7 +53,7 @@ const KEYS = [
   'f',
   'g',
   'h',
-  'q',
+  'j',
   'k',
   'l',
   enter,
