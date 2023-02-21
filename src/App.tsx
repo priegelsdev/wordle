@@ -92,17 +92,6 @@ export default function App() {
       if (row) {
         Array.from(row.childNodes as NodeListOf<HTMLElement>).forEach(
           (child: HTMLElement, index: number) => {
-            // check how many times the entered letter is in the quiz word
-            const amountLetterInQuizWord = quizWord
-              .split('')
-              .reduce((acc, val) => {
-                if (val === child.innerText.toLowerCase()) {
-                  acc++;
-                }
-                return acc;
-              }, 0);
-
-            const letterToCheck = guessedLetters[index];
             child.classList.add('text-white');
             child.classList.remove('border-2');
 
