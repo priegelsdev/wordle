@@ -28,6 +28,8 @@ export default function App() {
   const [guessedLetters, setGuessedLetters] = useState<string[]>([]);
   // copy of guessedLetters that does not reset and holds every letter that has been guessed
   const [allGuessedLetters, setAllGuessedLetters] = useState<string[]>([]);
+  console.log(allGuessedLetters);
+  console.log(enteredLetters);
 
   const [language, setLanguage] = useState<LanguageOption>(
     (localStorage.getItem('language') as LanguageOption) || 'en'
@@ -92,7 +94,18 @@ export default function App() {
       const row = document.getElementById(`row-${i}`);
       if (row) {
         Array.from(row.childNodes as NodeListOf<HTMLElement>).forEach(
-          (child: HTMLElement) => {
+          (child: HTMLElement, index: number) => {
+            // check how many times the entered letter is in the quiz word
+            const amountLetterInQuizWord = quizWord
+              .split('')
+              .reduce((acc, val) => {
+                if (val === child.innerText.toLowerCase()) {
+                  acc++;
+                }
+                return acc;
+              }, 0);
+
+            const letterToCheck = child.innerText.toLowerCase();
             child.classList.add('text-white');
             child.classList.remove('border-2');
 
@@ -103,7 +116,40 @@ export default function App() {
               child.innerText.toLowerCase() != child.id &&
               quizWord.split('').includes(child.innerText.toLowerCase())
             ) {
-              child.classList.add('bg-letter-yellow');
+              // LOGIC:
+              // if the letter is included in quizWord, determine how many times (var count) and then loop through the row again;
+              // as long as count is > 0, loop through the row again and for each time the letter is found, count--
+              // to prioritize correct letters, we loop to ONLY check those first and THEN move on to incorrect placed ones
+
+              let count = amountLetterInQuizWord;
+              child.classList.add('bg-asphalt-gray');
+
+              if (count > 0) {
+                Array.from(row.childNodes as NodeListOf<HTMLElement>).forEach(
+                  (child: HTMLElement, newIndex: number) => {
+                    if (
+                      letterToCheck === child.innerText.toLowerCase() &&
+                      letterToCheck === child.id
+                    ) {
+                      count--;
+                    }
+                  }
+                );
+
+                Array.from(row.childNodes as NodeListOf<HTMLElement>).forEach(
+                  (child: HTMLElement, newIndex: number) => {
+                    if (
+                      letterToCheck != child.id &&
+                      letterToCheck === child.innerText.toLowerCase() &&
+                      quizWord.split('').includes(letterToCheck) &&
+                      count > 0
+                    ) {
+                      child.classList.add('bg-letter-yellow');
+                      count--;
+                    }
+                  }
+                );
+              }
             } else {
               child.classList.add('bg-asphalt-gray');
             }
@@ -147,16 +193,18 @@ export default function App() {
     ) {
       setGuessedLetters(enteredLetters);
       enteredLetters.forEach((letter) => {
-        if (!allGuessedLetters.includes(letter)) {
-          setAllGuessedLetters((prevState) => [...prevState, letter]);
-        }
+        console.log(letter);
         if (
           quizWord.split('').indexOf(letter) === enteredLetters.indexOf(letter)
         ) {
+          console.log('CORRECT LETTER EVERYONE', letter);
           setAllGuessedLetters((prevState) => [
             ...prevState,
             letter + 'correct',
           ]);
+        }
+        if (!allGuessedLetters.includes(letter)) {
+          setAllGuessedLetters((prevState) => [...prevState, letter]);
         }
       });
 
