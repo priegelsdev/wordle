@@ -6,7 +6,7 @@ import RowsContainer from './Components/RowsContainer';
 import Header from './Components/Header';
 import words from './words.json';
 import worte from './worte.json';
-import alleWorte from './alleWorte';
+import alleWorte from './alleWorte.json';
 
 // we create type for language options
 type LanguageOption = 'en' | 'de';
